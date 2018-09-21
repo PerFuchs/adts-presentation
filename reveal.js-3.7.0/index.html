@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/simple.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>Testing as a service:<br> making a vision tangible</h2>
+            <br>
+            <h3>Presented by Per</h3>
+        </section>
+        <section>
+            <h3>Bigger software == more bugs</h3>
+            <p>average bug density stayed constant</p>
+            <p>but average code volume increases exponentially</p>
+            <p>software steers evermore important processes in our society e.g. micro trading</p>
+
+            <aside class="notes">
+                <p>
+                    So far the headline is true. A study showed that the bug density over time stayed
+                    constant while the size of software increased exponentially. Therefore,
+                    we find evermore bugs.
+                </p>
+                <p>
+                    This needs to change, not only because bugs are expensive as other papers showed but
+                    especially because software controls important aspects of our society and lives e.g.
+                    micro trading.
+                </p>
+                <p>
+                    People start presentation about testing with the columbia spaceshuttle dissaster
+                    as an example. I believe, this example does not cover the modern situation anymore.
+                    Let me explain, back then this disaster mostly hit the producers and users of the
+                    software - the NASA. Nowadays, a bug causing a micro trading service to go haywire
+                    might cause insolvency of a single bank but wide spread finicial crisis. Affecting,
+                    not only a single company but the whole western society.
+                </p>
+                <p>Therefore, it becomes a social responsibility to deliver good software.</p>
+            </aside>
+        </section>
+        <section>
+            <h3>Automated software testing as a service (TaaS)</h3>
+            <p>fully automated testing by a service provider</p>
+            <p>on infrastructure managed by them</p>
+            <p>saving developing time and money</p>
+            <br>
+            <p>makes software reliability comparable and promotes open competition along this metric</p>
+        </section>
+        <section>
+            <h3>My objective: making TaaS tangible</h3>
+            <p>TaaS is a vision</p>
+            <p>it might seems far off and probably unrealistic</p>
+            <p></p>
+            <p>I present two papers as examples to illustrate solutions to some of TaaS challenges</p>
+            <ul>
+                <li>one possible implementation of TaaS by PaaS providers</li>
+                <li>a promising approach to one of the main technical challenges of TaaS</li>
+            </ul>
+            <p>These serve as examples of active research solving the challenges of TaaS</p>
+            <aside class="notes">
+                <p>
+                    My main question after reading the vision paper about Taas was: "Great story but
+                    where is the substance/ the solutions
+                </p>
+                <p>
+                    Turned out there are papers that work on most challenges mentioned in the
+                    vision papers filling in these gaps.
+                </p>
+                <p>
+                    I chose two of those.
+                </p>
+                <p>
+                    show one possible implementation of TaaS which is really
+                    high level but shows a concrete design for TaaS
+                </p>
+                <p>
+                    one technical paper to illustrate that to many technical challenges
+                    promising approaches are existing in current research
+                </p>
+
+
+                <p>
+                    central or left aligned?
+                    as sentence or bullet points
+                    more space to the headline
+                    slide numbers
+
+                </p>
+            </aside>
+        </section>
+        <section>
+            <h3>Structure</h3>
+        </section>
+        <section>
+            <h3>Symbolic Execution</h3>
+        </section>
+        <section>
+            <h3>TaaS by PaaS providers</h3>
+            <h4>One possible implementation of TaaS</h4>
+            <aside class="notes">
+                Introduction as one possible implementation instead of a definitive manual to it
+                that does not go into technical details
+            </aside>
+        </section>
+    </div>
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        dependencies: [
+            {src: 'plugin/markdown/marked.js'},
+            {src: 'plugin/markdown/markdown.js'},
+            {src: 'plugin/notes/notes.js', async: true},
+            {
+                src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            }
+        ]
+    });
+</script>
+</body>
+</html>
