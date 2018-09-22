@@ -280,15 +280,48 @@
             </section>
             <section>
                 <h3>System overview and load balancing</h3>
+                <div class="box">
+                    <div class="col-50">
+                        <img src="graphs/worker_coordinator.png">
+                    </div>
+                    <div class="col-50">
+                        <ul>
+                            <li>Systems consists out of one coordinator (C) and multiple worker (R, S, T)</li>
+                            <li>one job == one execution state</li>
+                            <li class="space-below">each worker maintains a work queue</li>
+                            <li>they update the coordinator about the length of their queue (1)</li>
+                            <li>the coordinator issues requests to balance work (2)</li>
+                            <li>workers exchange jobs (3)</li>
+                        </ul>
+                    </div>
+                </div>
                 <aside class="notes">
                     <ul>
                         <li>consists out of workers and one coordinator</li>
                         <li>Splitting within the state domain - a job equals a state</li>
                         <li>Each worker maintains a queue of jobs</li>
                         <li>They update the coordinator regularely about there job count</li>
-                        <li>coordinator issues balancing requests - coordinator is not responsible for actual balancing -- low load</li>
+                        <li>coordinator issues balancing requests - coordinator is not responsible for actual balancing
+                            -- low load
+                        </li>
                         <li>talk through example with picture</li>
                         <li>Special case of leaving and joining nodes are handled easily</li>
+
+
+
+                        <li>Very simple but leads to linear scaling according to</li>
+                    </ul>
+                </aside>
+            </section>
+            <section>
+                <h3>Challenges in load balancing</h3>
+                <ul>
+                    <li>efficient job encoding for low bandwidth</li>
+                    <li>no duplicated work</li>
+                    <li>completeness of the execution tree</li>
+                </ul>
+                <aside class="notes">
+                    <ul>
                         <li>Challenges:</li>
                         <ul>
                             <li>Efficient job encoding for low bandwidth requirements</li>
