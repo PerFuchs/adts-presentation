@@ -165,7 +165,7 @@
                         <img src="img/paas_test_case.png">
                     </div>
                     <div class="col-40">
-                    <img src="img/paas_request.png">
+                        <img src="img/paas_request.png">
                         <ol>
                             <li>Defines inputs and their structure</li>
                             <li>Retrieves concrete input</li>
@@ -188,7 +188,8 @@
                     <p>processes request (concrete)</p>
                     <p>at the same time collects path constraints for this single path (symbolic)</p>
                     <p>Get new inputs</p>
-                    <p>by generating inputs out of path constraints: negate a single one for interesting layers build a correct input (cross layer dependencies (e.g. http size field to content size))</p>
+                    <p>by generating inputs out of path constraints: negate a single one for interesting layers build a
+                        correct input (cross layer dependencies (e.g. http size field to content size))</p>
                 </aside>
 
             </section>
@@ -211,7 +212,7 @@
                     <ul>
                         <li>What does this achieve?</li>
                         <li>Automates test input generation to automatically cover many paths based on
-                        input structure. One could say generates input "inteligently"
+                            input structure. One could say generates input "inteligently"
                         </li>
                         <ul>
                             <li>high success rate in generating inputs that</li>
@@ -223,8 +224,81 @@
                         <li>Executes only single paths symbolically: No path explosion, can never explore all paths</li>
                         <li>Uses common structure to focus on business logic instead of library code</li>
                         <li>As PaaS provider are already able to build production machines they are well suited
-                        to build similiar test machines, basically wrapping a production machine in a
-                        symbolic VM and implement the testing framework</li>
+                            to build similiar test machines, basically wrapping a production machine in a
+                            symbolic VM and implement the testing framework
+                        </li>
+                    </ul>
+                </aside>
+            </section>
+
+        </section>
+        <section>
+            <section>
+                <h2>Parallel symbolic execution</h2>
+                <h3>One general approach enable symbolic execution of real world programs</h3>
+            </section>
+            <section>
+                <h3>Parallel symbolic execution, rewards and problems</h3>
+                <ul>
+                    <li>parallelize symbolic execution on large clusters of commodity hardware</li>
+                    <ul>
+                        <li class="space-below">share nothing architecture</li>
+                    </ul>
+                    <li>to alleviate high memory consumption due to path explosion</li>
+                    <li class="space-below">to distribute CPU intensive path constraint solving</li>
+                    <li>mostly a load balancing problem</li>
+                </ul>
+                <aside class="notes">
+                    <p>Message: Goal, Rewards and problems of symbex parallelization</p>
+                    <ul>
+                        <li>Parallization on computers as available in the clouds</li>
+                        <ul>
+                            <li>large clusters of commodity hardware</li>
+                            <li>without common memory</li>
+                            <li>low bisection bandwidth</li>
+                        </ul>
+                        <li>Due to that two of the main challenges of symbex are relieved</li>
+                        <ul>
+                            <li>high memory consumption of state explosion (scales with number of nodes)</li>
+                            <li>to distribute CPU intensive path constraint solving</li>
+                        </ul>
+                        <li class="space-below">Mostly that is a load balacing problem.</li>
+                        <li>Due to</li>
+                        <ul>
+                            <li>Unpredictable work per state</li>
+                            <ul>
+                                <li>Different difficulty of constraints</li>
+                            </ul>
+                            <li>Undecidability of subtree size</li>
+                            <ul>
+                                <li>Different amount of state forking</li>
+                            </ul>
+                            <li>Flunctations in worker availability, cost and quality</li>
+                        </ul>
+                    </ul>
+                </aside>
+            </section>
+            <section>
+                <h3>System overview and load balancing</h3>
+                <aside class="notes">
+                    <ul>
+                        <li>consists out of workers and one coordinator</li>
+                        <li>Splitting within the state domain - a job equals a state</li>
+                        <li>Each worker maintains a queue of jobs</li>
+                        <li>They update the coordinator regularely about there job count</li>
+                        <li>coordinator issues balancing requests - coordinator is not responsible for actual balancing -- low load</li>
+                        <li>talk through example with picture</li>
+                        <li>Special case of leaving and joining nodes are handled easily</li>
+                        <li>Challenges:</li>
+                        <ul>
+                            <li>Efficient job encoding for low bandwidth requirements</li>
+                            <ul>
+                                <li>Solution: send path towards node state</li>
+                            </ul>
+                            <li>Nonredundant work</li>
+                            <li>Completeness</li>
+                            <li>Next slide</li>
+                        </ul>
                     </ul>
                 </aside>
             </section>
@@ -253,8 +327,8 @@
         center: true,
         transition: "slide"
     });
-    Reveal.configure({ slideNumber: true });
-    Reveal.configure({ slideNumber: 'c/t' });
+    Reveal.configure({slideNumber: true});
+    Reveal.configure({slideNumber: 'c/t'});
 </script>
 </body>
 </html>
