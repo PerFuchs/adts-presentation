@@ -335,6 +335,25 @@
                     </ul>
                 </aside>
             </section>
+            <section>
+                <aside class="notes">
+                    <ul>
+                        <li>Every worker holds only the subtree its exploring locally</li>
+                        <li>No node has a global execution tree</li>
+                        <li>So we get the following picture: ...</li>
+                        <li>Candidates are to explore, fences are explored somewhere else,
+                        dead nodes have been fully explored and can be deleted</li>
+                        <li>Nodes to explore are always chosen from the candidates list!</li>
+                        <li>When a node is sent to a neighbour it becomes a fence nodes</li>
+
+
+                        <li>Candidates are intersection free, (1) initial situation, (2) each work transfer keeps it that way, (3) exploration can not introduce redundancy</li>
+                        <li>Candidates are complete because each node ever created is either candidates, dead (fully explored) or fence (somewhere else a candidate)</li>
+                        <li>Ask them to believe that this is none redundant and complete hint you have a backup slide</li>
+
+                    </ul>
+                </aside>
+            </section>
         </section>
     </div>
 </div>
