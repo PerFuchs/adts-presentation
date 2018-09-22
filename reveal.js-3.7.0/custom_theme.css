@@ -1,0 +1,11 @@
+.reveal h3 {
+    margin-bottom: 5%;
+}
+
+li.space {
+    list-style: none;
+}
+
+.reveal li.space-below {
+    padding-bottom: 5%;
+}
