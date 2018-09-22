@@ -9,3 +9,22 @@ li.space {
 .reveal li.space-below {
     padding-bottom: 5%;
 }
+
+
+
+.reveal .box {
+    display: flex;
+    flex-direction: row;
+}
+
+.reveal .box .col-50 {
+    width: 50%;
+}
+
+.reveal .box .col-60  {
+    width: 60%;
+}
+
+.reveal .box .col-40 {
+    width: 40%;
+}
