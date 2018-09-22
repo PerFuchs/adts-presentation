@@ -1,17 +1,20 @@
+/* Header style */
 .reveal h3 {
     margin-bottom: 5%;
 }
 
-li.space {
-    list-style: none;
+.reveal h5 {
+    margin-bottom: 5px;
 }
 
+
+/* Enumeration style */
 .reveal li.space-below {
     padding-bottom: 5%;
 }
 
 
-
+/* Box model */
 .reveal .box {
     display: flex;
     flex-direction: row;
