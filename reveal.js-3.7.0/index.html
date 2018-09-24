@@ -28,7 +28,8 @@
         <section>
             <h2>Testing as a service:<br> making a vision tangible</h2>
             <br>
-            <h3>Presented by Per</h3>
+            <h3>Presented by Per Fuchs</h3>
+            <h5>Course Advanced Topics in Distributed Systems 2018</h5>
         </section>
         <section>
             <h3>Bigger software == more bugs</h3>
@@ -74,13 +75,13 @@
         <section>
             <h3>My objective: making TaaS tangible</h3>
             <ul class="dashed">
-                <li>TaaS is a vision and might seems unrealistic or far-off</li>
-                <li class="space-below">but most of its challenges are subject of state of art research</li>
+                <li>TaaS is a great vision with big rewards</li>
+                <li>but has to tackle many challenge of technical and conceptual nature</li>
+
                 <li>The presented papers illustrate</li>
                 <ul>
                     <li>one possible implementation of TaaS by PaaS providers</li>
-                    <li>a promising approach to make symbolic execution scalable on a share-nothing
-                        architecture
+                    <li>a promising approach to make symbolic execution scalable on cloud computers
                     </li>
                 </ul>
             </ul>
@@ -123,6 +124,20 @@
         </section>
         <section>
             <h3>Symbolic Execution</h3>
+            <div class="box">
+                <div class="col-50">
+
+                </div>
+                <div class="col-50">
+<pre><code class="hljs" data-trim contenteditable>
+i = get_int()
+if (i==9):
+    fail()
+else:
+    print(i)
+</code></pre>
+                </div>
+            </div>
         </section>
         <section>
             <section>
@@ -136,9 +151,8 @@
             <section>
                 <h3>TaaS by PaaS providers</h3>
                 <ul>
-                    <li>PaaS streamlines deploying from apps</li>
-                    <li class="space-below">PaaS providers are well positioned to also simplify the testing of apps</li>
-                    <li>They already provide the setup of dependencies for integration testing</li>
+                    <li>PaaS providers are well positioned to also simplify the integration testing of apps</li>
+                    <li>they already provide the setup of dependencies for integration testing</li>
                     <li>but leave the developer with the hard task to handcraft requests for each test scenario</li>
                     <ul>
                         <li>this is a tedious task even more so because of the layered architecture of modern web apps
@@ -308,15 +322,14 @@
                         <li>Special case of leaving and joining nodes are handled easily</li>
 
 
-
-                        <li>Very simple but leads to linear scaling according to</li>
+                        <li>Very simple but leads to linear scaling according to paper</li>
                     </ul>
                 </aside>
             </section>
             <section>
                 <h3>Challenges in load balancing</h3>
                 <ul>
-                    <li>efficient job encoding for low bandwidth</li>
+                    <li>space-efficient job encoding for low bandwidth networks</li>
                     <li>no duplicated work</li>
                     <li>completeness of the execution tree</li>
                 </ul>
@@ -336,23 +349,100 @@
                 </aside>
             </section>
             <section>
+                <h3>Complete and non-redundant partitioning an intuition</h3>
+                <div class="box">
+                    <div class="col-50">
+                        <img src="img/partioning_cloud_9.png">
+                    </div>
+                    <div class="col-50">
+                        <ul>
+                            <li>each worker explores its local subtree</li>
+                            <li>there are three kind of nodes:</li>
+                            <ul>
+                                <li><b>Candidates</b>: to be explored</li>
+                                <li><b>Fence states</b>: explored by another node</li>
+                                <li><b>Dead states</b>: completely explored</li>
+                            </ul>
+
+                        </ul>
+                    </div>
+                </div>
                 <aside class="notes">
                     <ul>
                         <li>Every worker holds only the subtree its exploring locally</li>
                         <li>No node has a global execution tree</li>
                         <li>So we get the following picture: ...</li>
                         <li>Candidates are to explore, fences are explored somewhere else,
-                        dead nodes have been fully explored and can be deleted</li>
+                            dead nodes have been fully explored and can be deleted
+                        </li>
                         <li>Nodes to explore are always chosen from the candidates list!</li>
                         <li>When a node is sent to a neighbour it becomes a fence nodes</li>
 
 
-                        <li>Candidates are intersection free, (1) initial situation, (2) each work transfer keeps it that way, (3) exploration can not introduce redundancy</li>
-                        <li>Candidates are complete because each node ever created is either candidates, dead (fully explored) or fence (somewhere else a candidate)</li>
-                        <li>Ask them to believe that this is none redundant and complete hint you have a backup slide</li>
+                        <li>Candidates are intersection free, (1) initial situation, (2) each work transfer keeps it
+                            that way, (3) exploration can not introduce redundancy
+                        </li>
+                        <li>Candidates are complete because each node ever created is either candidates, dead (fully
+                            explored) or fence (somewhere else a candidate)
+                        </li>
+                        <li>Ask them to believe that this is none redundant and complete hint you have a backup slide
+                        </li>
 
                     </ul>
                 </aside>
+            </section>
+            <section>
+                <h3>Complete and non-redundant partitioning an intuition</h3>
+                <div class="box">
+                    <div class="col-50">
+                        <img src="img/partioning_cloud_9.png">
+                    </div>
+                    <div class="col-50">
+                        <ul>
+                            <li>Complete</li>
+                            <ul>
+                                <li>initially all children of the root state are allocated</li>
+                                <li>each new state is a candidate</li>
+                                <li>candidates become either</li>
+                                <ul>
+                                    <li>dead when they are fully explored</li>
+                                    <li>fence when send to another worker but they will be candidate there</li>
+                                </ul>
+                            </ul>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h3>Complete and non-redundant partitioning an intuition</h3>
+                <div class="box">
+                    <div class="col-50">
+                        <img src="img/partioning_cloud_9.png">
+                    </div>
+                    <div class="col-50">
+                        <ul>
+                            <li>Non-redundant</li>
+                            <ul>
+                                <li>initially the sets of candidates on different nodes is intersection</li>
+                                <li>Work transfer keeps them intersection free</li>
+                                <li>Exploration never creates the same state twice</li>
+                            </ul>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h3>Conclusion</h3>
+                <ul>
+                    <li>the paper describes</li>
+                    <ul>
+                        <li>a parallelized version of symbolic execution</li>
+                        <li>that scales linearly</li>
+                        <li>on share-nothing cloud architecture</li>
+                        <li>and further contributions, e.g. symbolic environments or implementation of a testing API
+                        </li>
+                    </ul>
+                </ul>
             </section>
         </section>
     </div>
@@ -360,6 +450,7 @@
 
 <script src="lib/js/head.min.js"></script>
 <script src="js/reveal.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
 
 <script>
     Reveal.initialize({
@@ -367,11 +458,6 @@
             {src: 'plugin/markdown/marked.js'},
             {src: 'plugin/markdown/markdown.js'},
             {src: 'plugin/notes/notes.js', async: true},
-            {
-                src: 'plugin/highlight/highlight.js', async: true, callback: function () {
-                    hljs.initHighlightingOnLoad();
-                }
-            }
         ],
         controls: false,
         width: 1500,
@@ -381,6 +467,8 @@
     });
     Reveal.configure({slideNumber: true});
     Reveal.configure({slideNumber: 'c/t'});
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
 </script>
 </body>
 </html>
