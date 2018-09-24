@@ -7,6 +7,16 @@
     margin-bottom: 5px;
 }
 
+/* Title bar style*/
+#chapter-header {
+    background: #fff;
+    border: none;
+    border-bottom: 5px solid #ccc;
+}
+
+#chapter-header p {
+    color: #c00;
+}
 
 /* Enumeration style */
 .reveal li.space-below {

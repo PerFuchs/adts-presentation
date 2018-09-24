@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="css/reveal.css">
     <link rel="stylesheet" href="css/theme/simple.css">
+    <link rel="stylesheet" href="plugin/chapter-header/chapter-header.css">
     <link rel="stylesheet" href="custom_theme.css">
 
     <!-- Theme used for syntax highlighting of code -->
@@ -25,98 +26,101 @@
 <body>
 <div class="reveal">
     <div class="slides">
-        <section>
-            <h2>Testing as a service:<br> making a vision tangible</h2>
-            <br>
-            <h3>Presented by Per Fuchs</h3>
-            <h5>Course Advanced Topics in Distributed Systems 2018</h5>
+        <section data-title="Introduction">
+            <section data-no-title="true">
+                <h2>Testing as a service:<br> making a vision tangible</h2>
+                <br>
+                <h3>Presented by Per Fuchs</h3>
+                <h5>Course Advanced Topics in Distributed Systems 2018</h5>
+            </section>
+            <section>
+                <h3>Bigger software == more bugs</h3>
+                <ul>
+                    <li>average bug density stayed constant</li>
+                    <li class="space-below">but average code volume increases exponentially</li>
+                    <li>software steers evermore important processes in our society e.g. micro trading</li>
+                </ul>
+                <ul>
+
+                </ul>
+                <aside class="notes">
+                    <p>
+                        So far the headline is true. A study showed that the bug density over time stayed
+                        constant while the size of software increased exponentially. Therefore,
+                        we find evermore bugs.
+                    </p>
+                    <p>
+                        This needs to change, not only because bugs are expensive as other papers showed but
+                        especially because software controls important aspects of our society and lives e.g.
+                        micro trading.
+                    </p>
+                    <p>
+                        People start presentation about testing with the columbia spaceshuttle dissaster
+                        as an example. I believe, this example does not cover the modern situation anymore.
+                        Let me explain, back then this disaster mostly hit the producers and users of the
+                        software - the NASA. Nowadays, a bug causing a micro trading service to go haywire
+                        might cause insolvency of a single bank but wide spread finicial crisis. Affecting,
+                        not only a single company but the whole western society.
+                    </p>
+                    <p>Therefore, it becomes a social responsibility to deliver good software.</p>
+                </aside>
+            </section>
+            <section>
+                <h3>Automated software testing as a service (TaaS)</h3>
+                <ul>
+                    <li>fully automated testing by a service provider</li>
+                    <li>on managed infrastructure</li>
+                    <li class="space-below">saving developing time and money</li>
+                    <li>makes software reliability comparable and promotes open competition along this metric</li>
+                </ul>
+            </section>
+            <section>
+                <h3>Making TaaS tangible: Structure</h3>
+                <ol class="dashed">
+                    <li>preliminaries: what is symbolic execution?</li>
+                    <li>a concrete example on how to build TaaS for PaaS</li>
+                    <li>solution for a technical challenge: parallelize symbolic execution</li>
+                    <li>TaaS a disruptive technology</li>
+                </ol>
+                </ul>
+
+                <aside class="notes">
+                    <p>
+                        My main question after reading the vision paper about Taas was: "Great story but
+                        where is the substance/ the solutions
+                    </p>
+                    <p>
+                        Turned out there are papers that work on most challenges mentioned in the
+                        vision papers filling in these gaps.
+                    </p>
+                    <p>
+                        I chose two of those.
+                    </p>
+                    <p>
+                        show one possible implementation of TaaS which is really
+                        high level but shows a concrete design for TaaS
+                    </p>
+                    <p>
+                        one technical paper to illustrate that to many technical challenges
+                        promising approaches are existing in current research
+                    </p>
+
+
+                    <p>
+                        central or left aligned?
+                        as sentence or bullet points
+                        more space to the headline
+                        slide numbers
+
+                    </p>
+                </aside>
+            </section>
         </section>
-        <section>
-            <h3>Bigger software == more bugs</h3>
-            <ul>
-                <li>average bug density stayed constant</li>
-                <li class="space-below">but average code volume increases exponentially</li>
-                <li>software steers evermore important processes in our society e.g. micro trading</li>
-            </ul>
-            <ul>
-
-            </ul>
-            <aside class="notes">
-                <p>
-                    So far the headline is true. A study showed that the bug density over time stayed
-                    constant while the size of software increased exponentially. Therefore,
-                    we find evermore bugs.
-                </p>
-                <p>
-                    This needs to change, not only because bugs are expensive as other papers showed but
-                    especially because software controls important aspects of our society and lives e.g.
-                    micro trading.
-                </p>
-                <p>
-                    People start presentation about testing with the columbia spaceshuttle dissaster
-                    as an example. I believe, this example does not cover the modern situation anymore.
-                    Let me explain, back then this disaster mostly hit the producers and users of the
-                    software - the NASA. Nowadays, a bug causing a micro trading service to go haywire
-                    might cause insolvency of a single bank but wide spread finicial crisis. Affecting,
-                    not only a single company but the whole western society.
-                </p>
-                <p>Therefore, it becomes a social responsibility to deliver good software.</p>
-            </aside>
-        </section>
-        <section>
-            <h3>Automated software testing as a service (TaaS)</h3>
-            <ul>
-                <li>fully automated testing by a service provider</li>
-                <li>on managed infrastructure</li>
-                <li class="space-below">saving developing time and money</li>
-                <li>makes software reliability comparable and promotes open competition along this metric</li>
-            </ul>
-        </section>
-        <section>
-            <h3>Making TaaS tangible: Structure</h3>
-            <ol class="dashed">
-                <li>preliminaries: what is symbolic execution?</li>
-                <li>a concrete example on how to build TaaS for PaaS</li>
-                <li>solution for a technical challenge: parallelize symbolic execution</li>
-                <li>TaaS a disruptive technology</li>
-            </ol>
-            </ul>
-
-            <aside class="notes">
-                <p>
-                    My main question after reading the vision paper about Taas was: "Great story but
-                    where is the substance/ the solutions
-                </p>
-                <p>
-                    Turned out there are papers that work on most challenges mentioned in the
-                    vision papers filling in these gaps.
-                </p>
-                <p>
-                    I chose two of those.
-                </p>
-                <p>
-                    show one possible implementation of TaaS which is really
-                    high level but shows a concrete design for TaaS
-                </p>
-                <p>
-                    one technical paper to illustrate that to many technical challenges
-                    promising approaches are existing in current research
-                </p>
-
-
-                <p>
-                    central or left aligned?
-                    as sentence or bullet points
-                    more space to the headline
-                    slide numbers
-
-                </p>
-            </aside>
-        </section>
-        <section>
-            <h3>Symbolic Execution</h3>
-            <div class="box">
-                <div class="col-50">
+        <section data-title="Preliminaries">
+            <section >
+                <h3>Symbolic Execution</h3>
+                <div class="box">
+                    <div class="col-50">
 <pre><code class="hljs" data-trim contenteditable>
 i = get_int()
 if (i==9):
@@ -124,14 +128,15 @@ if (i==9):
 else:
     print(i)
 </code></pre>
+                    </div>
+                    <div class="col-50">
+                        <img src="graphs/symbex.png">
+                    </div>
                 </div>
-                <div class="col-50">
-                    <img src="graphs/symbex.png">
-                </div>
-            </div>
+            </section>
         </section>
-        <section>
-            <section>
+        <section data-title="TaaS by PaaS: One possible implementation of TaaS">
+            <section data-no-title="true">
                 <h3>TaaS by PaaS providers</h3>
                 <h4>One possible implementation of TaaS</h4>
                 <aside class="notes">
@@ -236,10 +241,10 @@ else:
             </section>
 
         </section>
-        <section>
-            <section>
+        <section data-title="Parallel symbolic execution">
+            <section data-no-title="true">
                 <h2>Parallel symbolic execution</h2>
-                <h3>One general approach enable symbolic execution of real world programs</h3>
+                <h3>One general approach to enable symbolic execution of real world programs</h3>
             </section>
             <section>
                 <h3>Parallel symbolic execution, rewards and problems</h3>
@@ -435,6 +440,38 @@ else:
                 </ul>
             </section>
         </section>
+
+        <section data-title="TaaS as a certification service">
+            <section data-no-title="true">
+                <h1>TODO title page</h1>
+            </section>
+            <section>
+                <h3>TaaS as a certification service</h3>
+                <ul>
+                    <li>Akin to Underwriters Lab, TÜV or the CE certification (without legal bearing)</li>
+                    <li>Provided by government, industrial consortia or by companies</li>
+                    <li>Early example is the Apple Store certification</li>
+                </ul>
+            </section>
+            <section>
+                <h3>Technical challenges and solutions</h3>
+                <ul>
+                    <li>Complete black box testing <b>but</b> research group presented feasibility by finding
+                        14 bugs in 6 closed-source windows drivers with symbolic execution
+                    </li>
+                    <li>Unclear testing results <b>but</b> Symbolic execution provides input to reproduce the bugs found
+                    </li>
+                </ul>
+            </section>
+        </section>
+        <section data-no-title="true">
+            <q>
+                For an industry to compete on a certain product attribute, that attribute must
+                be easily explained and quantified for consumers.
+            </q>
+            <p>This can be provided by TaaS - especially as a certification service</p>
+            <p><b>which will have strong positive impact on the reliability from software</b></p>
+        </section>
     </div>
 </div>
 
@@ -448,6 +485,11 @@ else:
             {src: 'plugin/markdown/marked.js'},
             {src: 'plugin/markdown/markdown.js'},
             {src: 'plugin/notes/notes.js', async: true},
+            {
+                src: 'plugin/chapter-header/chapter-header.js', async: true, callback: function () {
+                    chapterHeader.init();
+                }
+            }
         ],
         controls: false,
         width: 1500,
@@ -458,7 +500,6 @@ else:
     Reveal.configure({slideNumber: true});
     Reveal.configure({slideNumber: 'c/t'});
     hljs.initHighlightingOnLoad();
-    hljs.initLineNumbersOnLoad();
 </script>
 </body>
 </html>
