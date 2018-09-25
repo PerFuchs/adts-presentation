@@ -44,25 +44,8 @@
 
                 </ul>
                 <aside class="notes">
-                    <p>
-                        So far the headline is true. A study showed that the bug density over time stayed
-                        constant while the size of software increased exponentially. Therefore,
-                        we find ever more bugs.
-                    </p>
-                    <p>
-                        This needs to change, not only because bugs are expensive as other papers showed but
-                        especially because software controls important aspects of our society and lives e.g.
-                        micro trading.
-                    </p>
-                    <p>
-                        People start presentation about testing with the Columbia spaceshuttle dissaster
-                        as an example. I believe, this example does not cover the modern situation anymore.
-                        Let me explain, back then this disaster mostly hit the producers and users of the
-                        software - the NASA. Nowadays, a bug causing a micro trading service to go haywire
-                        might cause insolvency of a single bank but wide spread finicial crisis. Affecting,
-                        not only a single company but the whole western society.
-                    </p>
-                    <p>Therefore, it becomes a social responsibility to deliver good software.</p>
+                    <p>Strong incentive to fix: controls evermore important aspects of our society e.g. micro
+                        trading</p>
                 </aside>
             </section>
             <section>
@@ -71,8 +54,13 @@
                     <li>fully automated testing by a service provider</li>
                     <li>on managed infrastructure</li>
                     <li class="space-below">saving developing time and money</li>
-                    <li>makes software reliability comparable and promotes open competition along this metric</li>
+                    <li>makes software reliability comparable and promotes open competition on this attribute</li>
                 </ul>
+                <aside class="notes">
+                    <p>the solution I present is: ...</p>
+                    <p>less input to provided by developer</p>
+                    <p>makes software reliability comparable by allowing for large-scale, standarized testing</p>
+                </aside>
             </section>
             <section>
                 <h3>TaaS, making a vision tangible: Structure</h3>
@@ -85,34 +73,19 @@
                 </ul>
 
                 <aside class="notes">
-                    <p>
-                        My main question after reading the vision paper about Taas was: "Great story but
-                        where is the substance/ the solutions
-                    </p>
-                    <p>
-                        Turned out there are papers that work on most challenges mentioned in the
-                        vision papers filling in these gaps.
-                    </p>
-                    <p>
-                        I chose two of those.
-                    </p>
-                    <p>
-                        show one possible implementation of TaaS which is really
-                        high level but shows a concrete design for TaaS
-                    </p>
-                    <p>
-                        one technical paper to illustrate that to many technical challenges
-                        promising approaches are existing in current research
-                    </p>
-
-
-                    <p>
-                        central or left aligned?
-                        as sentence or bullet points
-                        more space to the headline
-                        slide numbers
-
-                    </p>
+                    <ul>
+                        <li>TaaS is big vision with amazing rewards</li>
+                        <li>but big visions have to deal with big challenges</li>
+                        <li>one being to get a concrete picture of how to implement it</li>
+                        <li>another being extreme technical challenges</li>
+                        <ul>
+                            <li>TaaS envisioned based on symbolic execution</li>
+                            <li>known to be a technical challenging problem</li>
+                            <li>I present a approach to parallelize it</li>
+                        </ul>
+                        <li>Finally, rather high level introduce, the idea of TaaS as a certification service</li>
+                        <li>but start with a short summary what symbolic execution is</li>
+                    </ul>
                 </aside>
             </section>
         </section>
@@ -133,6 +106,22 @@ else:
                         <img src="graphs/symbex.png">
                     </div>
                 </div>
+                <aside class="notes">
+                    <ul>
+                        <li>execution tree</li>
+                        <li>execution state</li>
+                        <li>get symbolic value</li>
+                        <li>remember what we know about it</li>
+                        <li>fork states on if</li>
+                        <li>execute both branches as if the condition were true</li>
+                        <li>paht constrains</li>
+                        <li>find the bug</li>
+                        <li>Generate input to trigger bug</li>
+                        <li>challenges</li>
+                        <li>constraint solving</li>
+                        <li>paht explosion</li>
+                    </ul>
+                </aside>
             </section>
         </section>
         <section data-title="TaaS by PaaS: One possible implementation of TaaS">
@@ -141,7 +130,6 @@ else:
                 <h4>One possible implementation of TaaS</h4>
                 <aside class="notes">
                     Introduction as one possible implementation instead of a definitive manual to it
-                    that does not go into technical details
                 </aside>
             </section>
             <section>
@@ -156,17 +144,10 @@ else:
                         </li>
                     </ul>
                     <aside class="notes">
-                        <p>Message: the main idea of TaaS by Paas + why is it intuitively feasible</p>
-                        <p>Economically well positioned as well</p>
-                        <p>
-                            Example layers: HTTP parsing, URL dispatching, JSON parsing, Business logic,
-                            Test case only wants to exercise all paths in the business logic but needs to fulfill
-                            conditions at each layer
-                        </p>
-                        <p>This is the concrete problem of the presented approach</p>
-                        <p>Developers input: application + one testcase per input of the same structure and
-                            same assertations (e.g. no 500 error + all possible execution paths through one
-                            url handler</p>
+                        <li>Economically well positioned as well for integration testing</li>
+                        <li>provide integration already</li>
+                        <li>but leave the work to generate one input for each path</li>
+                        <li>Really tedious because of layers</li>
                     </aside>
                 </ul>
             </section>
@@ -187,19 +168,14 @@ else:
                 </div>
                 <aside class="notes">
                     <TODO>slide about new input generation</TODO>
-                    <p>Message: this is how a test case looks like and how it is executed</p>
-                    <p>Setup: Define input and their structure as onion object</p>
-                    <p>Talk to the payload of the example</p>
-                    <p>mention wrapping in json and http (prepared structures</p>
-                    <p>point out layer parapmeter</p>
-                    <p>point out definition and naming</p>
-                    <p>running: gets the input by name, that is one concrete good input</p>
-                    <p>instruments it for symbolic execution (only one layer)</p>
-                    <p>processes request (concrete)</p>
-                    <p>at the same time collects path constraints for this single path (symbolic)</p>
-                    <p>Get new inputs</p>
-                    <p>by generating inputs out of path constraints: negate a single one for interesting layers build a
-                        correct input (cross layer dependencies (e.g. http size field to content size))</p>
+                    <ul>
+                        <li>introduce request</li>
+                        <li>introduce test case</li>
+                        <li>only first two points</li>
+                        <li>go over it</li>
+                        <li>introduce parallel symboli and concrete</li>
+                        <li>introduce negate path constraints</li>
+                    </ul>
                 </aside>
 
             </section>
@@ -216,26 +192,12 @@ else:
                 </ul>
                 <aside class="notes">
                     <TODO>slide about test server setup</TODO>
-                    <p>Message: repeat, clearify main ideas of PaaS testing</p>
                     <TODO>can i add the fitting of PaaS business model?</TODO>
                     <ul>
-                        <li>What does this achieve?</li>
-                        <li>Automates test input generation to automatically cover many paths based on
-                            input structure. One could say generates input "inteligently"
-                        </li>
-                        <ul>
-                            <li>high success rate in generating inputs that</li>
-                            <ul>
-                                <li>cover new paths</li>
-                                <li>are "correct" inputs</li>
-                            </ul>
-                        </ul>
-                        <li>Executes only single paths symbolically: No path explosion, can never explore all paths</li>
-                        <li>Uses common structure to focus on business logic instead of library code</li>
-                        <li>As PaaS provider are already able to build production machines they are well suited
-                            to build similiar test machines, basically wrapping a production machine in a
-                            symbolic VM and implement the testing framework
-                        </li>
+                        <li>automates input generation</li>
+                        <li>deals with paht explosion</li>
+                        <li>focuses on important parts</li>
+                        <li>provides path from production machine to testing machine</li>
                     </ul>
                 </aside>
             </section>
@@ -258,33 +220,6 @@ else:
                     <li>mostly a load balancing problem</li>
                 </ul>
                 <aside class="notes">
-                    <p>Message: Goal, Rewards and problems of symbex parallelization</p>
-                    <ul>
-                        <li>Parallization on computers as available in the clouds</li>
-                        <ul>
-                            <li>large clusters of commodity hardware</li>
-                            <li>without common memory</li>
-                            <li>low bisection bandwidth</li>
-                        </ul>
-                        <li>Due to that two of the main challenges of symbex are relieved</li>
-                        <ul>
-                            <li>high memory consumption of state explosion (scales with number of nodes)</li>
-                            <li>to distribute CPU intensive path constraint solving</li>
-                        </ul>
-                        <li class="space-below">Mostly that is a load balacing problem.</li>
-                        <li>Due to</li>
-                        <ul>
-                            <li>Unpredictable work per state</li>
-                            <ul>
-                                <li>Different difficulty of constraints</li>
-                            </ul>
-                            <li>Undecidability of subtree size</li>
-                            <ul>
-                                <li>Different amount of state forking</li>
-                            </ul>
-                            <li>Flunctations in worker availability, cost and quality</li>
-                        </ul>
-                    </ul>
                 </aside>
             </section>
             <section>
@@ -306,40 +241,20 @@ else:
                 </div>
                 <aside class="notes">
                     <ul>
-                        <li>consists out of workers and one coordinator</li>
-                        <li>Splitting within the state domain - a job equals a state</li>
-                        <li>Each worker maintains a queue of jobs</li>
-                        <li>They update the coordinator regularely about there job count</li>
-                        <li>coordinator issues balancing requests - coordinator is not responsible for actual balancing
-                            -- low load
-                        </li>
-                        <li>talk through example with picture</li>
-                        <li>Special case of leaving and joining nodes are handled easily</li>
-
-
-                        <li>Very simple but leads to linear scaling according to paper</li>
                     </ul>
                 </aside>
             </section>
             <section>
                 <h3>Challenges in load balancing</h3>
                 <ul>
-                    <li>space-efficient job encoding for low bandwidth networks</li>
                     <li>no duplicated work</li>
                     <li>completeness of the execution tree</li>
+                    <li>space-efficient job encoding for low bandwidth networks</li>
                 </ul>
                 <aside class="notes">
                     <ul>
-                        <li>Challenges:</li>
-                        <ul>
-                            <li>Efficient job encoding for low bandwidth requirements</li>
-                            <ul>
-                                <li>Solution: send path towards node state</li>
-                            </ul>
-                            <li>Nonredundant work</li>
-                            <li>Completeness</li>
-                            <li>Next slide</li>
-                        </ul>
+                        <li>skip space-efficient job encoding if above 12 minutes</li>
+                    </ul>
                     </ul>
                 </aside>
             </section>
@@ -364,25 +279,14 @@ else:
                 </div>
                 <aside class="notes">
                     <ul>
-                        <li>Every worker holds only the subtree its exploring locally</li>
-                        <li>No node has a global execution tree</li>
-                        <li>So we get the following picture: ...</li>
-                        <li>Candidates are to explore, fences are explored somewhere else,
-                            dead nodes have been fully explored and can be deleted
-                        </li>
-                        <li>Nodes to explore are always chosen from the candidates list!</li>
-                        <li>When a node is sent to a neighbour it becomes a fence nodes</li>
-
-
-                        <li>Candidates are intersection free, (1) initial situation, (2) each work transfer keeps it
-                            that way, (3) exploration can not introduce redundancy
-                        </li>
-                        <li>Candidates are complete because each node ever created is either candidates, dead (fully
-                            explored) or fence (somewhere else a candidate)
-                        </li>
-                        <li>Ask them to believe that this is none redundant and complete hint you have a backup slide
-                        </li>
-
+                        <li>easiest understand by analysing the situation that arises</li>
+                        <li>each node only subtrees</li>
+                        <li>type of nodes</li>
+                        <li>only candidates are explored/worked on</li>
+                        <li>reduces redundant work to intersection free candidate sets</li>
+                        <li>two actions, transfer, explore</li>
+                        <li>initial sets are complete and intersection free</li>
+                        <li>actions to not introduce intersection or incompleteness</li>
                     </ul>
                 </aside>
             </section>
@@ -404,6 +308,11 @@ else:
         <section data-title="TaaS as a certification service">
             <section data-no-title="true">
                 <h2>TaaS as a certification service: the bigger vision</h2>
+                <aside class="notes">
+                    <ul>
+                        <li>from the deepest technical point back to the level of a vision: TaaS as a certification service</li>
+                    </ul>
+                </aside>
             </section>
             <section>
                 <h3>TaaS as a certification service</h3>
