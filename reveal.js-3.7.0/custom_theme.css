@@ -41,3 +41,17 @@
 .reveal .box .col-40 {
     width: 40%;
 }
+
+.reveal ul {
+    list-style-type: none;
+}
+
+.reveal ul ul {
+    list-style-type: none;
+}
+
+.reveal ul li:before {
+    content: '\2014';
+    position: absolute;
+    margin-left: -35px;
+}
