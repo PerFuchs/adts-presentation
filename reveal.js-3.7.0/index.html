@@ -36,8 +36,8 @@
             <section>
                 <h3>Bigger software == more bugs</h3>
                 <ul>
-                    <li>average bug density stayed constant for decades</li>
-                    <li class="space-below">but average code volume increases exponentially per year</li>
+                    <li>average bug density stayed constant over time</li>
+                    <li class="space-below">but average code volume increases exponentially</li>
                     <li>software steers evermore important processes in our society e.g. micro trading</li>
                 </ul>
                 <ul>
@@ -295,7 +295,7 @@ else:
                     <li>the paper describes</li>
                     <ul>
                         <li>a parallelized version of symbolic execution</li>
-                        <li>that scales linearly</li>
+                        <li>that scales linearly up to at least 48 nodes</li>
                         <li class="space-below">on share-nothing cloud architecture</li>
                     </ul>
 
@@ -316,6 +316,7 @@ else:
             <section>
                 <h3>TaaS as a certification service</h3>
                 <ul>
+                    <li>only fully automated testing allows to certify software at big scale</li>
                     <li>akin to Underwriters Lab, TÜV or the CE certification (without legal bearing)</li>
                     <li>provided by government, industrial consortia or by companies</li>
                     <li>early example is the Apple Store certification</li>
@@ -393,6 +394,15 @@ else:
                 </div>
             </section>
         </section>
+        <section data-no-title="true">
+            <h3>References</h3>
+            <ol>
+                <li> S. Bucur, V. Ureche, C. Zamfir, G. Candea: Parallel symbolic execution for automated real-world software testing</li>
+                <li> S. Bucur, C. Zamfir, G. Candea: Automated Software Testing as a Service</li>
+                <li>S. Bucur, J. Kinder, G. Candea: Making automated testing of cloud applications an integral component of PaaS</li>
+                <li>S. McConnell. Code Complete. Microsoft Press, 2004</li>
+            </ol>
+        </section>
     </div>
 </div>
 
@@ -416,7 +426,7 @@ else:
         width: 1500,
         margin: 0.05,
         center: true,
-        transition: "slide"
+        transition: "none"
     });
     Reveal.configure({slideNumber: true});
     Reveal.configure({slideNumber: 'c/t'});
